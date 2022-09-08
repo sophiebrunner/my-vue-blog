@@ -1,22 +1,28 @@
 <template>
   <div :style="{ fontSize: postFontSitze + 'em' }">
     <h1>My journey becoming a Frontend Web Developer</h1>
-    <BlogPost
-      v-for="post in posts"
-      :key="post.id"
-      :title="post.title"
-      @enlarge-text="postFontSitze += 0.1"
-    />
-    <BlogPost title="Test Blog 4"></BlogPost>
+    <BlogTeaserList>
+      <BlogPost
+        v-for="post in posts"
+        :key="post.id"
+        :title="post.title"
+        @enlarge-text="postFontSitze += 0.1"
+      />
+      <BlogPost title="Test Blog 4"></BlogPost>
+      <template v-slot:show-number-of-posts
+        >Number of posts: {{ posts.length }}</template
+      >
+    </BlogTeaserList>
   </div>
 </template>
 
 <script>
 import BlogPost from "@/components/BlogPost.vue";
+import BlogTeaserList from "@/components/BlogTeaserList.vue";
 
 export default {
   name: "App",
-  components: { BlogPost },
+  components: { BlogPost, BlogTeaserList },
   data() {
     return {
       posts: [
