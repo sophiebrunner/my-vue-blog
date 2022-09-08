@@ -1,15 +1,40 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js App" />
+  <div :style="{ fontSize: postFontSitze + 'em' }">
+    <h1>My journey becoming a Frontend Web Developer</h1>
+    <BlogPost
+      v-for="post in posts"
+      :key="post.id"
+      :title="post.title"
+      @enlarge-text="postFontSitze += 0.1"
+    />
+    <BlogPost title="Test Blog 4"></BlogPost>
+  </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import BlogPost from "@/components/BlogPost.vue";
 
 export default {
   name: "App",
-  components: {
-    HelloWorld,
+  components: { BlogPost },
+  data() {
+    return {
+      posts: [
+        {
+          id: 1,
+          title: "Test Blog 1",
+        },
+        {
+          id: 2,
+          title: "Test Blog 2",
+        },
+        {
+          id: 3,
+          title: "Test Blog 3",
+        },
+      ],
+      postFontSitze: 1,
+    };
   },
 };
 </script>
